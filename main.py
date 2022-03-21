@@ -9,11 +9,12 @@ px = 320
 py = 470
 
 bx = 350
-by = 250
+by = 465
 bVx = 5
 bVy = 5
 
-
+lives = 3
+score = 0
 class Brick:
     def __init__(self, xpos, ypos):
         self.xpos = xpos
@@ -53,7 +54,17 @@ b19 = Brick(440, 45)
 b20 = Brick(500, 45)
 b21 = Brick(560, 45)
 b22 = Brick (620, 45)
-
+b23 = Brick(20,70)
+b24 = Brick(80, 70)
+b25 = Brick(140, 70)
+b26 = Brick(200, 70)
+b27 = Brick(260, 70)
+b28 = Brick(320, 70)
+b29 = Brick(380, 70)
+b30 = Brick(440, 70)
+b31 = Brick(500, 70)
+b32 = Brick(560, 70)
+b33 = Brick (620, 70)
 while not doExit:
     clock.tick(60)
     
@@ -72,57 +83,118 @@ while not doExit:
     
     if bx < 0 or bx + 20 > 700:
         bVx *= -1 
-    if by < 0 or by + 20 > 500:
+    if by < 0:
         bVy *= -1
         
     if b1.collide(bx, by):
         bVy *=-1
+        score += 100
     if b2.collide(bx, by):
         bVy *=-1
+        score += 100
     if b3.collide(bx, by):
         bVy *=-1
+        score += 100
     if b4.collide(bx, by):
         bVy *=-1
+        score += 100
     if b5.collide(bx, by):
         bVy *=-1
+        score += 100
     if b6.collide(bx, by):
         bVy *=-1
+        score += 100
     if b7.collide(bx, by):
         bVy *=-1
+        score += 100
     if b8.collide(bx, by):
         bVy *=-1
+        score += 100
     if b9.collide(bx, by):
         bVy *=-1
+        score += 100
     if b10.collide(bx, by):
         bVy *=-1
+        score += 100
     if b11.collide(bx, by):
         bVy *=-1
+        score += 100
     if b12.collide(bx, by):
         bVy *=-1
+        score += 100
     if b13.collide(bx, by):
         bVy *=-1
+        score += 100
     if b14.collide(bx, by):
         bVy *=-1
+        score += 100
     if b15.collide(bx, by):
         bVy *=-1
+        score += 100
     if b16.collide(bx, by):
         bVy *=-1
+        score += 100
     if b17.collide(bx, by):
         bVy *=-1
+        score += 100
     if b18.collide(bx, by):
         bVy *=-1
+        score += 100
     if b19.collide(bx, by):
         bVy *=-1
+        score += 100
     if b20.collide(bx, by):
         bVy *=-1
+        score += 100
     if b21.collide(bx, by):
         bVy *=-1
+        score += 100
     if b22.collide(bx, by):
-        bVy *=-1     
-    if bx < px + 50 and by + 20 > py and by < py + 50:
+        bVy *=-1
+        score += 100
+    if b23.collide(bx, by):
+        bVy *=-1
+        score += 100
+    if b24.collide(bx, by):
+        bVy *=-1
+        score += 100
+    if b25.collide(bx, by):
+        bVy *=-1
+        score += 100
+    if b26.collide(bx, by):
+        bVy *=-1
+        score += 100
+    if b27.collide(bx, by):
+        bVy *=-1
+        score += 100
+    if b28.collide(bx, by):
+        bVy *=-1
+        score += 100
+    if b29.collide(bx, by):
+        bVy *=-1
+        score += 100
+    if b30.collide(bx, by):
+        bVy *=-1
+        score += 100
+    if b31.collide(bx, by):
+        bVy *=-1
+        score += 100
+    if b32.collide(bx, by):
+        bVy *=-1
+        score += 100
+    if b33.collide(bx, by):
+        bVy *=-1
+        score += 100
+    #paddle/ball collision
+    if bx < px + 50 and bx > px and by  > py and by < py + 20:
         bVy *= -1
+    #collision with ground
+    if by >= 500:
+        lives -= 1
+        bx = 350
+        by = 250 
+
 #Drawing bricks
-                    
     screen.fill((0,0,0)) #wipe screen so it doesn't smear
 
     b1.draw()
@@ -147,7 +219,25 @@ while not doExit:
     b20.draw()
     b21.draw()
     b22.draw()
-
+    b23.draw()
+    b24.draw()
+    b25.draw()
+    b26.draw()
+    b27.draw()
+    b28.draw()
+    b29.draw()
+    b30.draw()
+    b31.draw()
+    b32.draw()
+    b33.draw()
+    
+    font = pygame.font.Font(None, 15)
+    text = font.render(str(lives),1, (0, 255, 0))
+    screen.blit(text, (660, 9))
+    font = pygame.font.Font(None, 15)
+    text = font.render(str(score),1, (0, 255, 0))
+    screen.blit(text, (40, 9))
+    
     pygame.draw.rect(screen, (223, 146, 232), (px, py, 50, 20), 2)
     pygame.draw.circle(screen, (218, 71, 255), (bx, by), 6)
     pygame.display.flip()
